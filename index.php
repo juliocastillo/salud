@@ -1,6 +1,5 @@
 <?php
 session_start();
-//index.php
 if ($_SESSION['login']){
     require 'header.php';
 } else { // si no se esta logeado
@@ -12,7 +11,7 @@ if ($_SESSION['login']){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ninfac Web</title>
+        <title></title>
         
     </head>
     <body>

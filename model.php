@@ -3,8 +3,21 @@
 <?php
 class Model{
     public function __construct() {
-          
+         
     }
+
+    function get_lista_reporte(){
+        $db=new MySQL();
+        $sql = "
+        SELECT e.*
+        FROM encuesta e";
+        /*
+         * devuelve el arreglo de pacientes
+         */
+        return $db->consulta($sql);
+    }
+
+
     function busqueda_producto($producto){
         $db=new MySQL();
         $sql = "

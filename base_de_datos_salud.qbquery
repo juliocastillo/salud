@@ -1,0 +1,346 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tiempo de generación: 18-11-2014 a las 01:49:44
+-- Versión del servidor: 5.1.66
+-- Versión de PHP: 5.2.17
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `u214834354_salud`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_area_trabajo`
+--
+
+DROP TABLE IF EXISTS `ctl_area_trabajo`;
+CREATE TABLE IF NOT EXISTS `ctl_area_trabajo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `area_trabajo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+
+--
+-- Volcado de datos para la tabla `ctl_area_trabajo`
+--
+
+INSERT INTO `ctl_area_trabajo` (`id`, `area_trabajo`) VALUES
+(1, 'Patologia'),
+(2, 'Laboratorio clinico'),
+(3, 'Administrativo'),
+(4, 'Rec humanos'),
+(5, 'Telefonia'),
+(6, 'Consulta ext'),
+(7, 'Archivo'),
+(8, 'Citas'),
+(9, 'Atencion al usua'),
+(10, 'Emergencias'),
+(11, 'Trabajo social'),
+(12, 'Rayox X'),
+(13, 'Sala de Op'),
+(14, 'Partos'),
+(15, 'Arsenal'),
+(16, 'Medicina'),
+(17, 'Cirugia'),
+(18, 'Ginecologia'),
+(19, 'Oqueli'),
+(20, 'BM'),
+(21, 'Pediatria'),
+(22, 'Lavanderia'),
+(23, 'Cocina'),
+(24, 'Mantenimiento'),
+(25, 'Clinica integral');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_dx`
+--
+
+DROP TABLE IF EXISTS `ctl_dx`;
+CREATE TABLE IF NOT EXISTS `ctl_dx` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dx` varchar(50) DEFAULT NULL,
+  `li` float(5,2) DEFAULT NULL,
+  `ls` float(5,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `ctl_dx`
+--
+
+INSERT INTO `ctl_dx` (`id`, `dx`, `li`, `ls`) VALUES
+(1, 'Peso normal', 0.00, 24.00),
+(2, 'Sobrepeso', 25.00, 29.90),
+(3, 'Obesidad G I', 30.00, 34.90),
+(4, 'Obesidad G II', 35.00, 39.90),
+(5, 'Obesidad G III', 40.00, 99.99);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_resp`
+--
+
+DROP TABLE IF EXISTS `ctl_resp`;
+CREATE TABLE IF NOT EXISTS `ctl_resp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `resp` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `ctl_resp`
+--
+
+INSERT INTO `ctl_resp` (`id`, `resp`) VALUES
+(1, 'SI'),
+(2, 'NO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_sexo`
+--
+
+DROP TABLE IF EXISTS `ctl_sexo`;
+CREATE TABLE IF NOT EXISTS `ctl_sexo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sexo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `ctl_sexo`
+--
+
+INSERT INTO `ctl_sexo` (`id`, `sexo`) VALUES
+(1, 'Masculino'),
+(2, 'Femenino');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empresa`
+--
+
+DROP TABLE IF EXISTS `empresa`;
+CREATE TABLE IF NOT EXISTS `empresa` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `registro` char(20) NOT NULL,
+  `nit` char(20) NOT NULL,
+  `logo` varchar(30) NOT NULL,
+  `vision` varchar(100) NOT NULL,
+  `giro` varchar(100) NOT NULL,
+  `dir` tinytext NOT NULL,
+  `tel` char(20) NOT NULL,
+  `correo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nit` (`nit`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`id`, `nombre`, `registro`, `nit`, `logo`, `vision`, `giro`, `dir`, `tel`, `correo`) VALUES
+(1, 'HOSPITAL ZACAMIL', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `encuesta`
+--
+
+DROP TABLE IF EXISTS `encuesta`;
+CREATE TABLE IF NOT EXISTS `encuesta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `area_trabajo` int(1) DEFAULT NULL,
+  `edad` int(2) DEFAULT NULL,
+  `nombre` varchar(75) DEFAULT NULL,
+  `sexo` int(1) DEFAULT NULL,
+  `num_afiliacion` varchar(50) DEFAULT NULL,
+  `tabaquismo` int(1) DEFAULT NULL,
+  `alcoholismo` int(1) DEFAULT NULL,
+  `diabetes` int(1) DEFAULT NULL,
+  `glucosa` int(5) DEFAULT NULL,
+  `hta` varchar(25) DEFAULT NULL,
+  `pa` varchar(25) DEFAULT NULL,
+  `colesterol` int(1) DEFAULT NULL,
+  `trigliceridos` int(3) DEFAULT NULL,
+  `fecha_examenes_lab` date DEFAULT NULL,
+  `tipo_examenes_lab` varchar(100) DEFAULT NULL,
+  `comida_rapida` int(1) DEFAULT NULL,
+  `comida_rapida_num` int(2) DEFAULT NULL,
+  `comida_cafeteria` int(1) DEFAULT NULL,
+  `comida_cafeteria_num` int(2) DEFAULT NULL,
+  `comida_casa` int(1) DEFAULT NULL,
+  `comida_casa_num` int(2) DEFAULT NULL,
+  `peso` int(3) DEFAULT NULL,
+  `talla` int(3) DEFAULT NULL,
+  `imc` int(3) DEFAULT NULL,
+  `dx` int(1) DEFAULT NULL,
+  `date_add` date DEFAULT NULL,
+  `date_mod` date DEFAULT NULL,
+  `user_add` int(4) DEFAULT NULL,
+  `user_mod` int(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `encuesta`
+--
+
+INSERT INTO `encuesta` (`id`, `fecha`, `area_trabajo`, `edad`, `nombre`, `sexo`, `num_afiliacion`, `tabaquismo`, `alcoholismo`, `diabetes`, `glucosa`, `hta`, `pa`, `colesterol`, `trigliceridos`, `fecha_examenes_lab`, `tipo_examenes_lab`, `comida_rapida`, `comida_rapida_num`, `comida_cafeteria`, `comida_cafeteria_num`, `comida_casa`, `comida_casa_num`, `peso`, `talla`, `imc`, `dx`, `date_add`, `date_mod`, `user_add`, `user_mod`) VALUES
+(1, '2014-11-01', 3, 43, 'Dato de prueba', 1, '124545-5', 2, 2, 2, 130, '2', '', 130, 150, '2014-01-01', 'glucosa', 1, 1, 1, 5, 1, 5, 80, 2, 27, 2, NULL, NULL, NULL, NULL),
+(2, '2014-11-17', 10, 28, 'Carolina', 2, '', 2, 1, 2, 110, '2', '110/70', 0, 0, '2014-07-01', 'Quimica, hemograma completo', 1, 7, 2, 0, 1, 3, 74, 2, 25, 1, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menuc`
+--
+
+DROP TABLE IF EXISTS `menuc`;
+CREATE TABLE IF NOT EXISTS `menuc` (
+  `id_mc` int(2) NOT NULL AUTO_INCREMENT,
+  `id_mt` int(2) DEFAULT NULL,
+  `ordenc` int(2) DEFAULT NULL,
+  `menuc` varchar(100) DEFAULT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT NULL,
+  `readonly` int(1) DEFAULT NULL,
+  `readwrite` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id_mc`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menup`
+--
+
+DROP TABLE IF EXISTS `menup`;
+CREATE TABLE IF NOT EXISTS `menup` (
+  `id_mp` int(2) NOT NULL AUTO_INCREMENT,
+  `orden` int(2) DEFAULT NULL,
+  `menup` varchar(100) DEFAULT NULL,
+  `url_mp` varchar(100) DEFAULT NULL,
+  `tbrol_id` int(1) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT NULL,
+  `readonly` int(1) DEFAULT NULL,
+  `readwrite` int(1) DEFAULT NULL,
+  `tbsistema_id` int(2) DEFAULT NULL,
+  PRIMARY KEY (`id_mp`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `menup`
+--
+
+INSERT INTO `menup` (`id_mp`, `orden`, `menup`, `url_mp`, `tbrol_id`, `estado`, `readonly`, `readwrite`, `tbsistema_id`) VALUES
+(1, 1, 'Incio', 'index.php', 0, 'A', 1, 1, 1),
+(2, 75, 'Herramientas', NULL, 4, 'A', NULL, NULL, 1),
+(3, 100, 'Salir', 'salir.php', 0, 'A', 1, 1, 1),
+(4, 2, 'Encuesta', '', 0, 'A', 0, 1, 1),
+(5, 50, 'Reporte', NULL, 4, 'A', 1, 1, 1),
+(6, 80, 'Configurar', NULL, 4, 'A', 0, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menus`
+--
+
+DROP TABLE IF EXISTS `menus`;
+CREATE TABLE IF NOT EXISTS `menus` (
+  `id_ms` int(2) NOT NULL AUTO_INCREMENT,
+  `id_mp` int(2) DEFAULT NULL,
+  `ordens` int(2) DEFAULT NULL,
+  `menus` varchar(100) DEFAULT NULL,
+  `rol` int(1) NOT NULL,
+  `urls` varchar(100) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT NULL,
+  `readonly` int(1) DEFAULT NULL,
+  `readwrite` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id_ms`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `menus`
+--
+
+INSERT INTO `menus` (`id_ms`, `id_mp`, `ordens`, `menus`, `rol`, `urls`, `estado`, `readonly`, `readwrite`) VALUES
+(1, 4, 1, 'Ingresar datos', 0, 'encuesta.php', 'A', 1, 1),
+(2, 5, 1, 'Listar encuesta', 0, 'listar.php', 'A', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menut`
+--
+
+DROP TABLE IF EXISTS `menut`;
+CREATE TABLE IF NOT EXISTS `menut` (
+  `id_mt` int(2) NOT NULL AUTO_INCREMENT,
+  `id_ms` int(2) DEFAULT NULL,
+  `ordent` int(2) DEFAULT NULL,
+  `menut` varchar(100) DEFAULT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT NULL,
+  `readonly` int(1) DEFAULT NULL,
+  `readwrite` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id_mt`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `phone` varchar(200) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `user` varchar(200) NOT NULL,
+  `pass` varchar(200) NOT NULL,
+  `role` int(1) NOT NULL,
+  `last_login_date` date DEFAULT NULL,
+  `status` char(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `firstname`, `lastname`, `phone`, `email`, `user`, `pass`, `role`, `last_login_date`, `status`) VALUES
+(1, 'Julio', 'Castillo', '7626-4183', 'jcastillore@yahoo.es', 'jcastillo', 'jca228-2010', 4, '2014-10-29', 'A'),
+(3, 'Berta Elena', 'Zelaya de Cornejo', NULL, NULL, 'bcornejo', 'berta', 4, NULL, 'A'),
+(4, 'Yoli', '', NULL, NULL, 'yoli', 'yoli', 4, NULL, 'A'),
+(5, 'Dr.', 'Cuellar', NULL, NULL, 'cuellar', 'cuellar', 4, NULL, 'A'),
+(6, 'Dr.', 'Solorzano', NULL, NULL, 'solorzano', 'solorzano', 4, NULL, 'A');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
